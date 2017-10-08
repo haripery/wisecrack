@@ -1,8 +1,9 @@
 const express = require('express'); //import express folder
-const mongoose = require('mongoose')
-require('./services/passport')
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
+require('./services/passport');
 
-mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds113835.mlab.com:13835/wisecrack-dev');
+mongoose.connect(keys.mongoURI);
 
 const app = express(); //create express app
 
