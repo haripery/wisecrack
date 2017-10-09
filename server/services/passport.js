@@ -1,9 +1,9 @@
 const passport = require('passport'); //passport for authentication
 const GoogleStrategy = require('passport-google-oauth20').Strategy; //passport-google-oauth20 strategy import
-const mongoose = require('mongoose');
-const keys = require('../config/keys');
+const mongoose = require('mongoose');//for MongoDB updation
+const keys = require('../config/keys');//get the keys
 
-const User = mongoose.model('users');
+const User = mongoose.model('users');//JS models for mongoDB
 
 passport.use(
   new GoogleStrategy({
@@ -12,7 +12,17 @@ passport.use(
     callbackURL:'http://localhost:5000/auth/google/callback'
   },
   (accessToken, refreshToken, profile, done) => {
-    new User({googleId:profile.Id}).save();
+    //promise for Asynchronus functions
+    User.findOne({googleId:profile.id}).then(existingUser =>{
+      if(existingUser){
+        //User in db
+      } else {
+        //User not in database
+        new User({ googleId:profile.id }).save();
+      }
+    })
+
+
   }
 )
 );
