@@ -15,10 +15,13 @@ passport.use(
     //promise for Asynchronus functions
     User.findOne({googleId:profile.id}).then(existingUser =>{
       if(existingUser){
-        //User in db
+        //User already present in db
+        done(null,existingUser);
       } else {
         //User not in database
-        new User({ googleId:profile.id }).save();
+        new User({ googleId:profile.id })//creates mongoose model instance
+        .save()
+        .then(user=>done(null,user));
       }
     })
 
