@@ -5,6 +5,16 @@ const keys = require('../config/keys');//get the keys
 
 const User = mongoose.model('users');//JS models for mongoDB
 
+passport.serializeUser((User, done)=>{
+  done(null, user.id);
+})
+
+passport.deserializeUser((id, done)=> {
+  User.findById(id).then(user=>{
+    done(null,user);
+  });
+})
+
 passport.use(
   new GoogleStrategy({
     clientID: keys.googleClientID,
