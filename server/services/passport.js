@@ -24,19 +24,16 @@ if(process.env.NODE_ENV==='production'){
       clientSecret: keys.googleClientSecret,
       callbackURL:'https://wisecrack.herokuapp.com/auth/google/callback'
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       //promise for Asynchronus functions
-      User.findOne({googleId:profile.id}).then(existingUser =>{
+      const existingUser = await User.findOne({googleId:profile.id})
         if(existingUser){
           //User already present in db
-          done(null,existingUser);
-        } else {
-          //User not in database
-          new User({ googleId:profile.id })//creates mongoose model instance
-          .save()
-          .then(user=>done(null,user));
+          return done(null,existingUser);
         }
-      })
+        //User not in database
+        const user = await new User({ googleId:profile.id }).save()//creates mongoose model instance
+        done(null,user);
     }
   )
   );
@@ -47,32 +44,17 @@ if(process.env.NODE_ENV==='production'){
       clientSecret: keys.googleClientSecret,
       callbackURL:'http://localhost:5000/auth/google/callback'
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       //promise for Asynchronus functions
-      User.findOne({googleId:profile.id}).then(existingUser =>{
+      const existingUser = await User.findOne({googleId:profile.id})
         if(existingUser){
           //User already present in db
-          done(null,existingUser);
-        } else {
-          //User not in database
-          new User({ googleId:profile.id })//creates mongoose model instance
-          .save()
-          .then(user=>done(null,user));
+          return done(null,existingUser);
         }
-      })
-
-
+        //User not in database
+        const user = await new User({ googleId:profile.id }).save()//creates mongoose model instance
+        done(null,user);
     }
   )
   );
 }
-
-
-//Dev
-//https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fauth%2Fgoogle%2Fcallback&scope=profile%20email&client_id=894213990449-7kq1cgctk936qsi58q3jpqt1dtm9mbis.apps.googleusercontent.com
-//http://localhost:5000/auth/google/callback?code=4/TKpLBHQ_UtOCx73LRFXhAMEDLTChOEZ923RYmoYnFA8#
-//https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fauth%2Fgoogle%2Fcallback&client_id=894213990449-7kq1cgctk936qsi58q3jpqt1dtm9mbis.apps.googleusercontent.com
-
-//Prod
-//939843289820-uv3b90adjqvq97jldtm9uoivnfl4748c.apps.googleusercontent.com
-//dTBx5jqwSWwgtKGu-bs4GXYg
