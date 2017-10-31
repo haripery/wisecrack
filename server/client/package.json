@@ -2,15 +2,18 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy":{
-    "/auth/google":{
-      "target":"http://localhost:5000"
+  "proxy": {
+    "/auth/google": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.14",
+    "redux": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
