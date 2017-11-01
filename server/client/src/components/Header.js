@@ -2,6 +2,21 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 
 class Header extends Component {
+
+  //Helper Method
+  renderContent(){
+    switch (this.props.auth){
+      case null:
+        return;
+      case false:
+        return(
+          <li><a href='/auth/google'>Login with Google</a></li>
+        );
+      default:
+        return <li><a href="/api/logout">logout</a></li>;
+    }
+  }
+
     render() {
         return (
           <nav>
@@ -10,9 +25,7 @@ class Header extends Component {
                     WiseCrack
                 </a>
                 <ul className="right">
-                  <li>
-                      <a>Login with Google</a>
-                  </li>
+                  {this.renderContent()}
                 </ul>
             </div>
           </nav>
