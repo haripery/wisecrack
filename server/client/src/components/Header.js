@@ -15,9 +15,17 @@ class Header extends Component {
           <li><a href='/auth/google'>Login with Google</a></li>
         );
       default:
+        let tempcredit = this.props.auth.credits;//code not working
+        if(tempcredit===undefined){
+          tempcredit = 0;
+        }
+        //console.log(tempcredit);
         return [
-          <li><Payments /></li>,
-          <li><a href="/api/logout">logout</a></li>
+          <li key="1"><Payments /></li>,
+          <li key="2" style={{ margin:'0 10px' }}>
+            credits:{tempcredit}
+          </li>,
+          <li key="3"><a href="/api/logout">logout</a></li>
         ]
     }
   }

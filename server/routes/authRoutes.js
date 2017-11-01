@@ -24,12 +24,14 @@ module.exports = (app) => {
   app.get('/api/logout',(req, res)=>{
     req.logout(); //promise destroy the userid
     res.redirect('/')
-  })
+  });
 
 
   app.get('/api/current_user',(req,res)=>{
     res.send(req.user);
-  })
+  });
+
+  
 
 
 };
