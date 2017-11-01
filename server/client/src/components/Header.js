@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
+import { connect } from 'react-redux';
 
 class Header extends Component {
-
     render() {
         return (
           <nav>
@@ -20,4 +20,12 @@ class Header extends Component {
     }
 }
 
-export default Header;
+/*function mapStateToProps({auth}){
+return { auth };
+}*/
+
+function mapStateToProps(state) {
+  return{ auth:state.auth }
+}
+
+export default connect(mapStateToProps)(Header);
