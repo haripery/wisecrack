@@ -3,15 +3,12 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Background from '../images/email.png';
-
-
-
-
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import SurveyNew from './surveys/SurveyNew';
 
-const SurveyNew = () => <h2>SurveyNew</h2>;
+
 
 var sectionStyle = {
   backgroundImage:`url(${Background})`,
