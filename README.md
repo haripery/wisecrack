@@ -2,7 +2,7 @@
 ## Feedback collection App(React, Redux, Node, MongoDB)
 
 Feautures:
-1. Collect surveys through emails.
+1. Collect surveys through emails
 2. Google OAuth Authentication
 3. Add WiseCrack credits with stripe API
 4. Send surveys through emails through sendGrid API
