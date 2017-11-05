@@ -4,8 +4,8 @@
 Feautures:
 1. Collect surveys through emails
 2. Google OAuth Authentication
-3. Add WiseCrack credits with stripe API
-4. Send surveys through emails through sendGrid API
+3. Add WiseCrack credits throgh stripe API
+4. Send surveys through emails with the help of sendGrid API
 
 ## Application images
 
